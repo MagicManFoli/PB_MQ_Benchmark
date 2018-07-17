@@ -1,6 +1,6 @@
 #!python3
 
-import timeslice_pb2 as TimeSlice
+import timeslice_pb2 as timeslice
 import zmq
 import time
 
@@ -20,7 +20,7 @@ values_name = "values.csv"
 
 # --- Main ---
 
-print("\n --- Welcome to PB_MQ_Benchmark --- \n")
+print("\n --- Welcome to PB_MQ_Benchmark: SUB --- \n")
 print("Subscribing to topic '{}' at '{}' on port '{}'\n".format(topic, publisher, port))
 
 print("Starting Socket")
@@ -33,7 +33,7 @@ print("Connecting")
 s.connect("tcp://{}:{}".format(publisher, port))
 s.setsockopt_string(zmq.SUBSCRIBE, topic)
 
-msg_in = TimeSlice.timeslice()
+msg_in = timeslice.timeslice()
 
 print("All ready, waiting to receive")
 

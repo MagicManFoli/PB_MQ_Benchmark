@@ -18,7 +18,7 @@ t_sleep_ms = 10
 # --- Main ---
 
 
-print("\n --- Welcome to PB_MQ_Benchmark --- \n")
+print("\n --- Welcome to PB_MQ_Benchmark: PUB --- \n")
 print("Publishing to topic '{}' on port {}\n".format(topic, port))
 
 print("Starting Socket")
@@ -36,9 +36,9 @@ msg_out.millis = int(time.time() * 1000 * 10)
 
 print("All ready, starting to spam:\n")
 
+# wait for subscribers
 time.sleep(1)
 
-# safety shutoff if forgotten
 for i in range(1, 50):
     
     msg_out.msg_id = i

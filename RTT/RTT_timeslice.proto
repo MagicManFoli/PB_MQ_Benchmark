@@ -1,0 +1,8 @@
+syntax = "proto3";
+
+package Benchmark;
+
+message timeslice
+{
+	uint32 msg_id = 1;
+}
