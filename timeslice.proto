@@ -5,5 +5,5 @@ package Benchmark;
 message timeslice
 {
 	uint32 msg_id = 1;
-	uint32 millis = 2;
+	uint64 millis = 2;
 }

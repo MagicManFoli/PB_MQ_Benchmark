@@ -16,7 +16,8 @@ port = 50403    # choose however you want
 topic = "Benchmark"
 publisher = "localhost"
 
-file_name = "values.csv"
+values_name = "values.csv"
+
 # --- Main ---
 
 print("\n --- Welcome to PB_MQ_Benchmark --- \n")
@@ -43,19 +44,26 @@ while True:
     topic, msg = c
     msg_in.ParseFromString(msg)
 
-    if msg_in.millis == 0 and msg_in.msg_id == 0:
+    # extract values
+    send_time = msg_in.millis
+    msg_id = msg_in.msg_id
+
+    if send_time == 0 and msg_id == 0:
         break
 
-    values.append((msg_in.msg_id, msg_in.millis))
+    curr_time = int(time.time() * 1000 * 10)
+    diff_time = int(curr_time - send_time)
 
-print("\nValue list:\n")
+    values.append((msg_id, send_time, curr_time, diff_time))
+
+print("\nValue list:")
 
 for elem in values:
-    print("ID: {}, ms: {}".format(elem[0], elem[1]))
+    print("ID: {}, send: {}, recv: {}, diff: {}".format(elem[0], elem[1], elem[2], elem[3]))
 
-print("Exporting to {}".format(file_name))
+print("Exporting to {}".format(values_name))
 
-with(open(file_name, 'w')) as csv_file:
+with(open(values_name, 'w')) as csv_file:
     writer = csv.writer(csv_file, lineterminator='\n')
     writer.writerows(values)
 
