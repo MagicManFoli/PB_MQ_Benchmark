@@ -32,7 +32,7 @@ print("Creating message")
 
 msg_out = timeslice.timeslice()
 msg_out.msg_id = 0
-msg_out.millis = int(time.clock() * 1000)
+msg_out.millis = int(time.time() * 1000 * 10)
 
 print("All ready, starting to spam:\n")
 
@@ -42,7 +42,7 @@ time.sleep(1)
 for i in range(1, 50):
     
     msg_out.msg_id = i
-    msg_out.millis = int(time.clock() * 1000)
+    msg_out.millis = int(time.time() * 1000)
 
     msg = msg_out.SerializeToString()   # bytes
     s.send_multipart((topic.encode('utf-8'), msg))
