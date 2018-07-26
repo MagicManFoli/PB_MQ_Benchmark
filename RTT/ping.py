@@ -1,18 +1,16 @@
 #!python3
 
+import csv
+import time
+
 import RTT_timeslice_pb2 as timeslice
 import zmq
-
-import time
-import csv
-
-from multiprocessing import Process
 
 # Ports between 49152 & 65535 are "free" ports
 
 # --- constants ---
 
-pub_port = 50403  # choose however you want
+pub_port = 50403
 sub_port = 50404
 
 topic = "Benchmark"
@@ -51,9 +49,10 @@ def get_time():
 
 
 print("\n --- Welcome to PB_MQ_Benchmark: Ping --- \n")
-print("Subscribing to topic '{}' at '{}' on port '{}'\n".format(topic, publisher, pub_port))
+print("Subscribing to topic '{}' at '{}' on port '{}'".format(topic, publisher, sub_port))
+print("Publishing on port '{}'\n".format(pub_port))
 
-print("I hope you started pong first, or else this is blocking indefinitely")
+print("--> I hope you started pong first, or else this is blocking indefinitely\n")
 
 print("Starting Socket")
 
